@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Mh3ULDjp+WlvFkXKIUf7wBmj+xZmdQW0jR0ycg+dGjjOSzHIIvQx8mtTjSpRFtuCjD6v2fr5bpAljevtTk4bKQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Lemon\\OneDrive\\Рабочий стол\\DexBot\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lemon\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512"
+  ],
+  "logs": []
+}
