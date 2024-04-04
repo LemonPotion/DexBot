@@ -1,11 +1,11 @@
-﻿using Domain.Validations;
-using Domain.Validations.Validators;
+﻿using Domain.Validations.Validators;
 using Domain.ValueObjects;
-///TODO: Добавить валидацию FullName
+
 namespace Domain.Entities
 {
     public class Person : BaseEntity
     {
+        //TODO: Добавить валидацию FullName
         /// <summary>
         /// Конструктор в котором происходит валидация
         /// </summary>
@@ -16,10 +16,18 @@ namespace Domain.Entities
         /// <param name="telegram"></param>
         public Person(FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram)
         {
-            Gender = new EnumValidator<Gender>(nameof(gender), [Gender.Other]).ValidateWithErrors(gender);
-            BirthDay = new BirthDateValidator(nameof(birthDay)).ValidateWithErrors(birthDay);
-            PhoneNumber = new PhoneValidator(nameof(phoneNumber)).ValidateWithErrors(phoneNumber);
-            Telegram = new TelegramNameValidator(nameof(telegram)).ValidateWithErrors(telegram);
+            var genderValidationResult = new EnumValidator<Gender>(nameof(gender), [Gender.Other]).Validate(gender);
+            if(genderValidationResult.IsValid)
+                Gender = gender;
+            var birthdayValidationResult = new BirthDateValidator(nameof(birthDay)).Validate(birthDay);
+            if(birthdayValidationResult.IsValid) 
+                BirthDay = birthDay;
+            var phoneNumberValidationResult = new PhoneValidator(nameof(phoneNumber)).Validate(phoneNumber);
+            if(phoneNumberValidationResult.IsValid) 
+                PhoneNumber = phoneNumber;
+            var telegramValidationResult = new TelegramNameValidator(nameof(telegram)).Validate(telegram);
+            if(telegramValidationResult.IsValid) 
+                Telegram = telegram;
         }
 
         /// <summary>

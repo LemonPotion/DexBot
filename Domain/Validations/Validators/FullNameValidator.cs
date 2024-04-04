@@ -1,3 +1,4 @@
+using Domain.ValueObjects;
 using FluentValidation;
 
 namespace Domain.Validations.Validators;
