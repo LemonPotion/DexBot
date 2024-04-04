@@ -1,11 +1,11 @@
-﻿using Domain.Validations.Validators;
+﻿using Domain.Validations;
+using Domain.Validations.Validators;
 using Domain.ValueObjects;
 
 namespace Domain.Entities
 {
     public class Person : BaseEntity
     {
-        //TODO: Добавить валидацию FullName
         /// <summary>
         /// Конструктор в котором происходит валидация
         /// </summary>
@@ -14,22 +14,21 @@ namespace Domain.Entities
         /// <param name="birthDay"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="telegram"></param>
-        public Person(FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram)
+        public Person(FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram , List<CustomFields<string>> customFields)
         {
-            var genderValidationResult = new EnumValidator<Gender>(nameof(gender), [Gender.Other]).Validate(gender);
-            if(genderValidationResult.IsValid)
+                FullName = fullName;
+            var genderValidationResult = new EnumValidator<Gender>(nameof(gender), [Gender.None]).ValidateWithErrors(gender);
                 Gender = gender;
-            var birthdayValidationResult = new BirthDateValidator(nameof(birthDay)).Validate(birthDay);
-            if(birthdayValidationResult.IsValid) 
+            var birthdayValidationResult = new BirthDateValidator(nameof(birthDay)).ValidateWithErrors(birthDay);
                 BirthDay = birthDay;
-            var phoneNumberValidationResult = new PhoneValidator(nameof(phoneNumber)).Validate(phoneNumber);
-            if(phoneNumberValidationResult.IsValid) 
+            var phoneNumberValidationResult = new PhoneValidator(nameof(phoneNumber)).ValidateWithErrors(phoneNumber);
                 PhoneNumber = phoneNumber;
-            var telegramValidationResult = new TelegramNameValidator(nameof(telegram)).Validate(telegram);
-            if(telegramValidationResult.IsValid) 
+            var telegramValidationResult = new TelegramNameValidator(nameof(telegram)).ValidateWithErrors(telegram);
                 Telegram = telegram;
+                
+                CustomFields = customFields;
         }
-
+        
         /// <summary>
         /// Полное имя
         /// </summary>
@@ -55,5 +54,7 @@ namespace Domain.Entities
         /// Ник tg
         /// </summary>
         public string Telegram { get; set; }
+
+        public List<CustomFields<string>> CustomFields { get; set; }
     }
 }

@@ -2,14 +2,18 @@
 namespace Domain.ValueObjects
 {
     ///TODO: как сравнивать эти объекты (DeepClone, DeepComparse)
-    
-    ///TODO: доделать Equals и GetHashСode
     public abstract class BaseValueObject
     {
         public override bool Equals(object? obj)
         {
-            if (obj is not BaseValueObject )
+            if (obj is not BaseValueObject valueObject)
                 return false;
+            var serializedValueObject = Serialize(valueObject);
+            var serializedThis = Serialize(this);
+            
+            if (string.CompareOrdinal(serializedValueObject, serializedThis) != 0) 
+                return false;
+                
             return true;
         }
         

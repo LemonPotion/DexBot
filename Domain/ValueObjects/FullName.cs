@@ -15,14 +15,14 @@ namespace Domain.ValueObjects
         /// <param name="middleName"></param>
         public FullName(string firstName, string lastName, string? middleName)
         {
-            FirstName = new FullNameValidator(nameof(firstName)).ValidateWithErrors(firstName);
-            LastName = new FullNameValidator(nameof(lastName)).ValidateWithErrors(lastName);
+            var fullNameValidator = new FullNameValidator(nameof(FullName));
+            FirstName = fullNameValidator.ValidateWithErrors(new FullName(firstName, lastName, middleName)).FirstName;
+            LastName = fullNameValidator.ValidateWithErrors(new FullName(firstName, lastName, middleName)).LastName;
             if (middleName is not null)
             {
-                MiddleName = new FullNameValidator(nameof(middleName)).ValidateWithErrors(middleName);   
+                MiddleName = fullNameValidator.ValidateWithErrors(new FullName(firstName, lastName, middleName)).MiddleName;
             }
         }
-
         /// <summary>
         /// Имя
         /// </summary>
