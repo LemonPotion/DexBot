@@ -1,12 +1,10 @@
-using Domain.Entities;
-using Domain.ValueObjects;
 using FluentValidation;
 
 namespace Domain.Validations.Validators;
 
-public class CustomFieldsValidator<TType> : AbstractValidator<CustomFields<TType>>
+public class IdValidator : AbstractValidator<Guid>
 {
-    public CustomFieldsValidator(string paramName)
+    public IdValidator(string paramName)
     {
         RuleFor(param => param)
             .NotNull().WithMessage(string.Format(ExceptionMessages.NullError, paramName))

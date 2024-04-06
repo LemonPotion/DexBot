@@ -9,7 +9,7 @@ public class TelegramNameValidator : AbstractValidator<string>
 {
     public TelegramNameValidator(string paramName)
     {
-        RuleFor(a => a)
+        RuleFor(param => param)
             .NotNull().WithMessage(string.Format(ExceptionMessages.NullError,paramName))
             .NotEmpty().WithMessage(string.Format(ExceptionMessages.EmptyError,paramName))
             .Matches(RegexPatterns.TelegramName).WithMessage(string.Format(ExceptionMessages.InvalidTelegramNameFormat,paramName));

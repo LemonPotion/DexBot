@@ -13,7 +13,7 @@ public class EnumValidator<TEnum> : AbstractValidator<TEnum> where TEnum : Enum
     {
         foreach (var value in defaultValues)
         {
-            RuleFor(a=>a)
+            RuleFor(param => param)
                 .NotEqual(value).WithMessage(string.Format(ExceptionMessages.DefaultEnum, paramName));
         }
     }

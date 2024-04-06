@@ -6,7 +6,7 @@ namespace ClassLibrary1.Services;
 
 public class PersonService : IPersonServices
 {
-    //TODO: Посмотреть AutoMapper, добавить маппинг
+    //TODO: добавить маппинг
     private readonly IPersonServices _personServices;
     private readonly IMapper _mapper;
 

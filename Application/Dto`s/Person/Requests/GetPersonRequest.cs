@@ -8,5 +8,5 @@ public class GetPersonRequest
     /// <summary>
     /// Идентификатор Person
     /// </summary>
-    public Guid id { get; init; }
+    public Guid Id { get; init; }
 }

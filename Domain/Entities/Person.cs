@@ -9,13 +9,18 @@ namespace Domain.Entities
         /// <summary>
         /// Конструктор в котором происходит валидация
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="fullName"></param>
         /// <param name="gender"></param>
         /// <param name="birthDay"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="telegram"></param>
-        public Person(FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram , List<CustomFields<string>> customFields)
+        /// <param name="customFields"></param>
+        public Person(Guid id, FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram , List<CustomFields<string>> customFields)
         {
+            var idValidationResult = new IdValidator(nameof(id)).ValidateWithErrors(id);
+                Id = id; 
+            var fullNameValidationResult = new FullNameValidator(nameof(fullName)).ValidateWithErrors(fullName);
                 FullName = fullName;
             var genderValidationResult = new EnumValidator<Gender>(nameof(gender), [Gender.None]).ValidateWithErrors(gender);
                 Gender = gender;

@@ -9,7 +9,7 @@ public class BirthDateValidator: AbstractValidator<DateTime>
     /// <param name="paramName"></param>
     public BirthDateValidator(string paramName)
     {
-        RuleFor(a => a)
+        RuleFor(param => param)
             .NotNull().WithMessage(string.Format(ExceptionMessages.NullError, paramName))
             .NotEmpty().WithMessage(string.Format(ExceptionMessages.EmptyError,paramName))
             .LessThan(DateTime.Now.AddDays(1)).WithMessage(string.Format(ExceptionMessages.FutureDateError, paramName))
