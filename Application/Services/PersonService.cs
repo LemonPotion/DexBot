@@ -1,12 +1,14 @@
+using Application.Dto_s.Person.Requests;
+using Application.Dto_s.Person.Responses;
+using Application.Interfaces.Services;
 using AutoMapper;
-using ClassLibrary1.Interfaces.Services;
 using Domain.Entities;
 
-namespace ClassLibrary1.Services;
-
-public class PersonService : IPersonServices
+namespace Application.Services;
+//TODO: проверить правильно ли всё сделано
+public class PersonService
 {
-    //TODO: добавить маппинг
+    
     private readonly IPersonServices _personServices;
     private readonly IMapper _mapper;
 
@@ -16,39 +18,74 @@ public class PersonService : IPersonServices
         _mapper = mapper;
     }
 
-    public async Task<Person> CreateAsync(Person entity, CancellationToken cancellationToken)
+    /// <summary>
+    /// Создание Person
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<CreatePersonResponse> CreateAsync(CreatePersonRequest request, CancellationToken cancellationToken)
     {
-        var person = await _personServices.CreateAsync(entity,cancellationToken);
-        return person;
+        var person = _mapper.Map<Person>(request);
+        var createdPerson = await _personServices.CreateAsync(person, cancellationToken);
+        var response = _mapper.Map<CreatePersonResponse>(createdPerson);
+        return response;
     }
 
-    public async Task<Person> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    /// <summary>
+    /// Получение Person по идентификатору
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<GetPersonByIdResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        var person= await _personServices.GetByIdAsync(id,cancellationToken);
-        return person;
+        var person = await _personServices.GetByIdAsync(id, cancellationToken);
+        var response = _mapper.Map<GetPersonByIdResponse>(person);
+        return response;
     }
 
-    public async Task<Person> UpdateAsync(Person entity, CancellationToken cancellationToken)
+    /// <summary>
+    /// Обновление Person
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<UpdatePersonResponse> UpdateAsync(UpdatePersonRequest request, CancellationToken cancellationToken)
     {
-        var person = await _personServices.UpdateAsync(entity, cancellationToken);
-        return person;
+        var person = _mapper.Map<Person>(request);
+        var updatedPerson = await _personServices.UpdateAsync(person, cancellationToken);
+        var response = _mapper.Map<UpdatePersonResponse>(updatedPerson);
+        return response;
     }
 
-    public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
+    /// <summary>
+    /// Удаление Person по идентификатору
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteByIdAsync(DeletePersonRequest request, CancellationToken cancellationToken)
     {
-        var person = await _personServices.DeleteByIdAsync(id, cancellationToken);
-        return person;
+        return await _personServices.DeleteByIdAsync(request.Id, cancellationToken);
     }
 
+    /// <summary>
+    /// Получение списка Person 
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<List<Person>> GetAllListAsync(CancellationToken cancellationToken)
     {
-        var personList =await _personServices.GetAllListAsync(cancellationToken);
-        return personList;
+        return await _personServices.GetAllListAsync(cancellationToken);
     }
-
+    /// <summary>
+    /// Получение кастомных полей
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<List<CustomFields<string>>> GetCustomFieldAsync(Guid id)
     {
-        var customField = await _personServices.GetCustomFieldAsync(id);
-        return customField;
+        return await _personServices.GetCustomFieldAsync(id);
     }
 }

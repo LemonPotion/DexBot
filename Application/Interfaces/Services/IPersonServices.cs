@@ -1,6 +1,6 @@
-using ClassLibrary1.Interfaces.Repositories;
+using Application.Interfaces.Repositories;
 
-namespace ClassLibrary1.Interfaces.Services;
+namespace Application.Interfaces.Services;
 
 public interface IPersonServices : IPersonRepository
 {

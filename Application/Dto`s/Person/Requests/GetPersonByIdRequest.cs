@@ -1,9 +1,9 @@
-namespace ClassLibrary1.Dto_s.Person.Requests;
+namespace Application.Dto_s.Person.Requests;
 
 /// <summary>
 /// Дто для получения Person
 /// </summary>
-public class GetPersonRequest
+public class GetPersonByIdRequest
 {
     /// <summary>
     /// Идентификатор Person

@@ -1,4 +1,4 @@
-namespace ClassLibrary1.Dto_s.Person.Requests;
+namespace Application.Dto_s.Person.Requests;
 /// <summary>
 /// Дто для удаления Person
 /// </summary>
