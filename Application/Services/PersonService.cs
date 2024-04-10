@@ -5,7 +5,6 @@ using AutoMapper;
 using Domain.Entities;
 
 namespace Application.Services;
-//TODO: проверить правильно ли всё сделано
 public class PersonService
 {
     
@@ -23,7 +22,7 @@ public class PersonService
     /// </summary>
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <returns>Task CreatePersonResponse </returns>
     public async Task<CreatePersonResponse> CreateAsync(CreatePersonRequest request, CancellationToken cancellationToken)
     {
         var person = _mapper.Map<Person>(request);
@@ -37,7 +36,7 @@ public class PersonService
     /// </summary>
     /// <param name="id"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <returns>Task GetPersonByIdResponse</returns>
     public async Task<GetPersonByIdResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var person = await _personServices.GetByIdAsync(id, cancellationToken);
@@ -50,7 +49,7 @@ public class PersonService
     /// </summary>
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <returns>Task UpdatePersonResponse</returns>
     public async Task<UpdatePersonResponse> UpdateAsync(UpdatePersonRequest request, CancellationToken cancellationToken)
     {
         var person = _mapper.Map<Person>(request);
@@ -64,28 +63,12 @@ public class PersonService
     /// </summary>
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    public async Task<bool> DeleteByIdAsync(DeletePersonRequest request, CancellationToken cancellationToken)
+    /// <returns> Task DeletePersonResponse</returns>
+    public async Task<DeletePersonResponse> DeleteByIdAsync(DeletePersonRequest request, CancellationToken cancellationToken)
     {
-        return await _personServices.DeleteByIdAsync(request.Id, cancellationToken);
-    }
-
-    /// <summary>
-    /// Получение списка Person 
-    /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    public async Task<List<Person>> GetAllListAsync(CancellationToken cancellationToken)
-    {
-        return await _personServices.GetAllListAsync(cancellationToken);
-    }
-    /// <summary>
-    /// Получение кастомных полей
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public async Task<List<CustomFields<string>>> GetCustomFieldAsync(Guid id)
-    {
-        return await _personServices.GetCustomFieldAsync(id);
+        var person = _mapper.Map<Person>(request);
+        var isDeleted = await _personServices.DeleteByIdAsync(person.Id, cancellationToken);
+        var response = _mapper.Map<DeletePersonResponse>(isDeleted);
+        return response;
     }
 }
