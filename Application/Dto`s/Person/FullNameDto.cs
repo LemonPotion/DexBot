@@ -13,5 +13,5 @@ public class FullNameDto
     /// <summary>
     /// Отчество
     /// </summary>
-    public string? MiddleName { get; set; } = null;
+    public string? MiddleName { get; set; }
 }

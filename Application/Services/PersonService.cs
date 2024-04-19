@@ -52,10 +52,17 @@ public class PersonService
     /// <returns>Task UpdatePersonResponse</returns>
     public async Task<UpdatePersonResponse> UpdateAsync(UpdatePersonRequest request, CancellationToken cancellationToken)
     {
-        var person = _mapper.Map<Person>(request);
-        var updatedPerson = await _personServices.UpdateAsync(person, cancellationToken);
-        var response = _mapper.Map<UpdatePersonResponse>(updatedPerson);
-        return response;
+        var getPersonByIdResponse = await GetByIdAsync(request.Id, cancellationToken);
+        var person = _mapper.Map<Person>(getPersonByIdResponse);
+        person.Update(request.FullName.FirstName,
+            request.FullName.LastName,
+            request.FullName.MiddleName,
+            request.PhoneNumber,
+            request.Gender,
+            request.BirthDay,
+            request.Telegram);
+        var updatePersonResponse = _mapper.Map<UpdatePersonResponse>(person);
+        return updatePersonResponse;
     }
 
     /// <summary>

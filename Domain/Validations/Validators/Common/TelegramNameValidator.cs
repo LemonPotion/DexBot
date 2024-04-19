@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Domain.Validations.Validators;
+namespace Domain.Validations.Validators.Common;
 
 /// <summary>
 /// Валидация ника в Telegram

@@ -1,7 +1,7 @@
 using FluentValidation;
 using Microsoft.VisualBasic;
 
-namespace Domain.Validations.Validators;
+namespace Domain.Validations.Validators.Common;
 
 public class PhoneValidator: AbstractValidator<string>
 {

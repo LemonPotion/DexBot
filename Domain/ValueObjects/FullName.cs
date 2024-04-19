@@ -1,5 +1,6 @@
 ﻿using Domain.Validations;
-using Domain.Validations.Validators;
+using Domain.Validations.Validators.Common;
+
 namespace Domain.ValueObjects
 {
     /// <summary>
@@ -15,13 +16,12 @@ namespace Domain.ValueObjects
         /// <param name="middleName"></param>
         public FullName(string firstName, string lastName, string? middleName)
         {
+            FirstName = firstName;
+            LastName = lastName;
+            MiddleName = middleName;
+    
             var fullNameValidator = new FullNameValidator(nameof(FullName));
-            FirstName = fullNameValidator.ValidateWithErrors(new FullName(firstName, lastName, middleName)).FirstName;
-            LastName = fullNameValidator.ValidateWithErrors(new FullName(firstName, lastName, middleName)).LastName;
-            if (middleName is not null)
-            {
-                MiddleName = fullNameValidator.ValidateWithErrors(new FullName(firstName, lastName, middleName)).MiddleName;
-            }
+            fullNameValidator.ValidateWithErrors(this);
         }
         /// <summary>
         /// Имя
@@ -35,5 +35,13 @@ namespace Domain.ValueObjects
         /// Отчество
         /// </summary>
         public string? MiddleName { get; set; } = null;
+
+        public FullName Update(string firstName, string lastName, string middleName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            MiddleName = middleName;
+            return this;
+        }
     }
 }

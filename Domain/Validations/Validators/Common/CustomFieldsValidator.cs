@@ -1,8 +1,7 @@
 using Domain.Entities;
-using Domain.ValueObjects;
 using FluentValidation;
 
-namespace Domain.Validations.Validators;
+namespace Domain.Validations.Validators.Common;
 
 public class CustomFieldsValidator<TType> : AbstractValidator<CustomFields<TType>>
 {

@@ -1,5 +1,5 @@
 ﻿using Domain.Validations;
-using Domain.Validations.Validators;
+using Domain.Validations.Validators.Entities;
 using Domain.ValueObjects;
 
 namespace Domain.Entities
@@ -18,22 +18,22 @@ namespace Domain.Entities
         /// <param name="customFields"></param>
         public Person(Guid id, FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram , List<CustomFields<string>> customFields)
         {
-            var idValidationResult = new IdValidator(nameof(id)).ValidateWithErrors(id);
-                Id = id; 
-            var fullNameValidationResult = new FullNameValidator(nameof(fullName)).ValidateWithErrors(fullName);
-                FullName = fullName;
-            var genderValidationResult = new EnumValidator<Gender>(nameof(gender), [Gender.None]).ValidateWithErrors(gender);
-                Gender = gender;
-            var birthdayValidationResult = new BirthDateValidator(nameof(birthDay)).ValidateWithErrors(birthDay);
-                BirthDay = birthDay;
-            var phoneNumberValidationResult = new PhoneValidator(nameof(phoneNumber)).ValidateWithErrors(phoneNumber);
-                PhoneNumber = phoneNumber;
-            var telegramValidationResult = new TelegramNameValidator(nameof(telegram)).ValidateWithErrors(telegram);
-                Telegram = telegram;
-                
-                CustomFields = customFields;
+            var validator = new PersonValidator(nameof(Person));
+            validator.ValidateWithErrors(this);
         }
-        
+
+        public Person Update( string firstName, string lastName, string middleName, string phoneNumber, Gender gender, DateTime birthDate, string telegram)
+        {
+            FullName.Update(firstName, lastName, middleName);
+            BirthDay = birthDate;
+            Gender = gender;
+            PhoneNumber = phoneNumber;
+            Telegram = telegram;
+            
+            var validator = new PersonValidator(nameof(Person));
+            validator.ValidateWithErrors(this);
+            return this;
+        }
         /// <summary>
         /// Полное имя
         /// </summary>

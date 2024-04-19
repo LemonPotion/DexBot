@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Domain.Validations.Validators;
+namespace Domain.Validations.Validators.Common;
 
 public class EnumValidator<TEnum> : AbstractValidator<TEnum> where TEnum : Enum
 {

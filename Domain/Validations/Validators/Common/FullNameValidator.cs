@@ -1,7 +1,7 @@
 using Domain.ValueObjects;
 using FluentValidation;
 
-namespace Domain.Validations.Validators;
+namespace Domain.Validations.Validators.Common;
 
 /// <summary>
 /// Валидация полного имени
@@ -15,9 +15,8 @@ public class FullNameValidator: AbstractValidator<FullName>
             .NotEmpty().WithMessage(string.Format(ExceptionMessages.EmptyError, paramName))
             .Matches(RegexPatterns.FullName).WithMessage(string.Format(ExceptionMessages.InvalidNameFormat, paramName));
         RuleFor(param => param.MiddleName)
-            .NotNull().WithMessage(string.Format(ExceptionMessages.NullError, paramName))
-            .NotEmpty().WithMessage(string.Format(ExceptionMessages.EmptyError, paramName))
-            .Matches(RegexPatterns.FullName).WithMessage(string.Format(ExceptionMessages.InvalidNameFormat, paramName));
+            .NotEmpty().When(middleName => middleName != null).WithMessage(string.Format(ExceptionMessages.EmptyError, paramName))
+            .Matches(RegexPatterns.FullName).When(middleName => middleName != null).WithMessage(string.Format(ExceptionMessages.InvalidNameFormat, paramName));
         RuleFor(param => param.LastName)
             .NotNull().WithMessage(string.Format(ExceptionMessages.NullError, paramName))
             .NotEmpty().WithMessage(string.Format(ExceptionMessages.EmptyError, paramName))
