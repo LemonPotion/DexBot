@@ -15,4 +15,6 @@ public class CustomFields<TType> : BaseEntity
     /// Значение
     /// </summary>
     public TType Value { get; set; }
+    
+    public Guid PersonId { get; set; }
 }

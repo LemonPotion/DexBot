@@ -28,12 +28,16 @@ namespace Domain.Entities
         /// </summary>
         public string PhoneNumber { get; set; }
         /// <summary>
-        /// Ник tg
+        /// Ник telegram
         /// </summary>
         public string Telegram { get; set; }
 
-        public List<CustomFields<string>> CustomFields { get; set; }
-        
+        public ICollection<CustomFields<string>> CustomFields { get; set; }
+
+        public Person()
+        {
+            
+        }
         /// <summary>
         /// Конструктор в котором происходит валидация
         /// </summary>

@@ -9,6 +9,10 @@
         /// Уникальный идентификатор сущности.
         /// </summary>
         public Guid Id { get; set; }
+        /// <summary>
+        /// Дата создания
+        /// </summary>
+        public DateTime CreationDate { get; set; }
 
         /// <summary>
         /// Переопределение метода для сравнения с другим объектом.
