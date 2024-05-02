@@ -21,7 +21,7 @@ namespace Domain.ValueObjects
             MiddleName = middleName;
     
             var fullNameValidator = new FullNameValidator(nameof(FullName));
-            fullNameValidator.ValidateWithErrors(this);
+            fullNameValidator.ValidateWithExceptions(this);
         }
         /// <summary>
         /// Имя
@@ -34,13 +34,17 @@ namespace Domain.ValueObjects
         /// <summary>
         /// Отчество
         /// </summary>
-        public string? MiddleName { get; set; } = null;
+        public string? MiddleName { get; set; }
 
-        public FullName Update(string firstName, string lastName, string middleName)
+        public FullName Update(string firstName, string lastName, string? middleName)
         {
             FirstName = firstName;
             LastName = lastName;
             MiddleName = middleName;
+            var fullNameValidator = new FullNameValidator(nameof(FullName));
+            
+            fullNameValidator.ValidateWithExceptions(this);
+            
             return this;
         }
     }

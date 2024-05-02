@@ -7,34 +7,6 @@ namespace Domain.Entities
     public class Person : BaseEntity
     {
         /// <summary>
-        /// Конструктор в котором происходит валидация
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="fullName"></param>
-        /// <param name="gender"></param>
-        /// <param name="birthDay"></param>
-        /// <param name="phoneNumber"></param>
-        /// <param name="telegram"></param>
-        /// <param name="customFields"></param>
-        public Person(Guid id, FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram , List<CustomFields<string>> customFields)
-        {
-            var validator = new PersonValidator(nameof(Person));
-            validator.ValidateWithErrors(this);
-        }
-
-        public Person Update( string firstName, string lastName, string middleName, string phoneNumber, Gender gender, DateTime birthDate, string telegram)
-        {
-            FullName.Update(firstName, lastName, middleName);
-            BirthDay = birthDate;
-            Gender = gender;
-            PhoneNumber = phoneNumber;
-            Telegram = telegram;
-            
-            var validator = new PersonValidator(nameof(Person));
-            validator.ValidateWithErrors(this);
-            return this;
-        }
-        /// <summary>
         /// Полное имя
         /// </summary>
         public FullName FullName { get; set; }
@@ -61,5 +33,42 @@ namespace Domain.Entities
         public string Telegram { get; set; }
 
         public List<CustomFields<string>> CustomFields { get; set; }
+        
+        /// <summary>
+        /// Конструктор в котором происходит валидация
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fullName"></param>
+        /// <param name="gender"></param>
+        /// <param name="birthDay"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="telegram"></param>
+        /// <param name="customFields"></param>
+        public Person(Guid id, FullName fullName,Gender gender, DateTime birthDay, string phoneNumber, string telegram , List<CustomFields<string>> customFields)
+        {
+            Id = id;
+            FullName = fullName;
+            Gender = gender;
+            BirthDay = birthDay;
+            PhoneNumber = phoneNumber;
+            Telegram = telegram;
+            
+            var validator = new PersonValidator(nameof(Person));
+            validator.ValidateWithExceptions(this);
+        }
+
+        public Person Update(string firstName, string lastName, string? middleName, string phoneNumber, Gender gender, DateTime birthDate, string telegram)
+        {
+            FullName.Update(firstName, lastName, middleName);
+            BirthDay = birthDate;
+            Gender = gender;
+            PhoneNumber = phoneNumber;
+            Telegram = telegram;
+
+            var validator = new PersonValidator(nameof(Person));
+            validator.ValidateWithExceptions(this);
+            
+            return this;
+        }
     }
 }

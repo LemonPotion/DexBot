@@ -8,7 +8,6 @@ namespace Application.Mapping;
 /// <summary>
 /// Конфигурация маппинга
 /// </summary>
-//TODO: Добавить маппинг для response`ов 
 public class PersonMappingProfile : Profile
 {
     
@@ -52,9 +51,6 @@ public class PersonMappingProfile : Profile
             .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
             .ForMember(dest => dest.Telegram, opt => opt.MapFrom(src => src.Telegram))
             .ForMember(dest => dest.CustomFields, opt => opt.MapFrom(src => src.CustomFields));
-            //TODO: Добавить метод который будет возвращать флаг результата удаления
-        CreateMap<Person, DeletePersonResponse>()
-            .ForMember(dest => dest.IsDeleted, opt => opt.MapFrom(src => true));
         
         CreateMap<Person, GetPersonByIdResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));

@@ -8,7 +8,6 @@ public class PersonValidator : AbstractValidator<Person>
 {
     public PersonValidator(string paramName)
     {
-        RuleFor(param => param.Id).SetValidator(new IdValidator(nameof(Person.Id)));
         RuleFor(param => param.FullName).SetValidator(new FullNameValidator(nameof(Person.FullName)));
         RuleFor(param => param.BirthDay).SetValidator(new BirthDateValidator(nameof(Person.BirthDay)));
         RuleFor(param => param.Gender).SetValidator(new EnumValidator<Gender>(nameof(Person.Gender)));

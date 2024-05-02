@@ -71,11 +71,10 @@ public class PersonService
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
     /// <returns> Task DeletePersonResponse</returns>
-    public async Task<DeletePersonResponse> DeleteByIdAsync(DeletePersonRequest request, CancellationToken cancellationToken)
+    public async Task<bool> DeleteByIdAsync(DeletePersonRequest request, CancellationToken cancellationToken)
     {
         var person = _mapper.Map<Person>(request);
         var isDeleted = await _personServices.DeleteByIdAsync(person.Id, cancellationToken);
-        var response = _mapper.Map<DeletePersonResponse>(isDeleted);
-        return response;
+        return isDeleted;
     }
 }

@@ -11,8 +11,7 @@ public class BirthDateValidator: AbstractValidator<DateTime>
     public BirthDateValidator(string paramName)
     {
         RuleFor(param => param)
-            .NotNull().WithMessage(string.Format(ExceptionMessages.NullError, paramName))
-            .NotEmpty().WithMessage(string.Format(ExceptionMessages.EmptyError,paramName))
+            .SetValidator(new BaseValidation<DateTime>(paramName))
             .LessThan(DateTime.Now.AddDays(1)).WithMessage(string.Format(ExceptionMessages.FutureDateError, paramName))
             .GreaterThan(DateTime.Now.AddYears(-150)).WithMessage(string.Format(ExceptionMessages.OldDateError,paramName));
     }

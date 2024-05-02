@@ -1,7 +1,6 @@
 ﻿using System.Text.Json;
 namespace Domain.ValueObjects
 {
-    ///TODO: как сравнивать эти объекты (DeepClone, DeepComparse)
     public abstract class BaseValueObject
     {
         public override bool Equals(object? obj)
@@ -11,10 +10,7 @@ namespace Domain.ValueObjects
             var serializedValueObject = Serialize(valueObject);
             var serializedThis = Serialize(this);
             
-            if (string.CompareOrdinal(serializedValueObject, serializedThis) != 0) 
-                return false;
-                
-            return true;
+            return string.CompareOrdinal(serializedValueObject, serializedThis) == 0;
         }
         
         public override int GetHashCode()
