@@ -21,17 +21,19 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
         builder.Services.AddSwaggerGen();
-        //TODO:  типизировать блок CronExpression
-        var testJobExpression = builder.Configuration["CronExpression:TestJob"];
+        
+        var cronExpressionSettings = builder.Configuration.GetSection("CronExpression").Get<CronExpressionSettings>();
+        
         builder.Services.AddQuartz(config =>
         {
             //TODO: найти альтернативы  
             config.UseMicrosoftDependencyInjectionJobFactory();
-            var jobKey = new JobKey("testJob");
-            config.AddJob<Job>(opts => opts.WithIdentity(jobKey));
-            var triggerKey = new TriggerKey("testJobTrigger");
-            //TODO: разобраться cron
-            config.AddTrigger(opts=> opts.ForJob(jobKey).WithIdentity(triggerKey).WithCronSchedule("0 * * ? * *"));
+            
+            var jobKey = new JobKey("personFindBirthdayJob");
+            config.AddJob<PersonFindBirthdayJob>(opts => opts.WithIdentity(jobKey));
+            var triggerKey = new TriggerKey("personFindBirthdayJobTrigger");
+            
+            config.AddTrigger(opts=> opts.ForJob(jobKey).WithIdentity(triggerKey).WithCronSchedule(cronExpressionSettings.PersonFindBirthdayJob));
         });
 
         builder.Services.AddQuartzHostedService(opts =>

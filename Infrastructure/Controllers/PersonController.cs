@@ -2,7 +2,6 @@ using Application.Dto_s.Person.Requests;
 using Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
-//TODO: сделать GetAll
 namespace Infrastructure.Controllers;
 
 [ApiController]
