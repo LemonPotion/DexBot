@@ -1,10 +1,8 @@
 using Domain.Entities;
 using Infrastructure.Dal.EntityFramework.Configurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Dal.EntityFramework;
-
 public class DexBotDbContext : DbContext
 {
     public DbSet<Person> Persons { get; set; }

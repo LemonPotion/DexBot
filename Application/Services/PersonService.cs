@@ -1,5 +1,6 @@
 using Application.Dto_s.Person.Requests;
 using Application.Dto_s.Person.Responses;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain.Entities;
@@ -7,14 +8,14 @@ using Domain.Entities;
 namespace Application.Services;
 public class PersonService
 {
-    
-    private readonly IPersonServices _personServices;
+
+    private readonly IPersonRepository _personRepository;
     private readonly IMapper _mapper;
 
-    public PersonService(IPersonServices personServices, IMapper mapper)
+    public PersonService(IMapper mapper, IPersonRepository personRepository)
     {
-        _personServices = personServices;
         _mapper = mapper;
+        _personRepository = personRepository;
     }
 
     /// <summary>
@@ -26,7 +27,7 @@ public class PersonService
     public async Task<CreatePersonResponse> CreateAsync(CreatePersonRequest request, CancellationToken cancellationToken)
     {
         var person = _mapper.Map<Person>(request);
-        var createdPerson = await _personServices.CreateAsync(person, cancellationToken);
+        var createdPerson = await _personRepository.CreateAsync(person, cancellationToken);
         var response = _mapper.Map<CreatePersonResponse>(createdPerson);
         return response;
     }
@@ -39,7 +40,7 @@ public class PersonService
     /// <returns>Task GetPersonByIdResponse</returns>
     public async Task<GetPersonByIdResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        var person = await _personServices.GetByIdAsync(id, cancellationToken);
+        var person = await _personRepository.GetByIdAsync(id, cancellationToken);
         var response = _mapper.Map<GetPersonByIdResponse>(person);
         return response;
     }
@@ -52,15 +53,12 @@ public class PersonService
     /// <returns>Task UpdatePersonResponse</returns>
     public async Task<UpdatePersonResponse> UpdateAsync(UpdatePersonRequest request, CancellationToken cancellationToken)
     {
+        var updateRequest = _mapper.Map<Person>(request); 
+        var updatedPerson = _personRepository.UpdateAsync(updateRequest,cancellationToken);
+        
         var getPersonByIdResponse = await GetByIdAsync(request.Id, cancellationToken);
         var person = _mapper.Map<Person>(getPersonByIdResponse);
-        person.Update(request.FullName.FirstName,
-            request.FullName.LastName,
-            request.FullName.MiddleName,
-            request.PhoneNumber,
-            request.Gender,
-            request.BirthDay,
-            request.Telegram);
+        
         var updatePersonResponse = _mapper.Map<UpdatePersonResponse>(person);
         return updatePersonResponse;
     }
@@ -74,7 +72,7 @@ public class PersonService
     public async Task<bool> DeleteByIdAsync(DeletePersonRequest request, CancellationToken cancellationToken)
     {
         var person = _mapper.Map<Person>(request);
-        var isDeleted = await _personServices.DeleteByIdAsync(person.Id, cancellationToken);
+        var isDeleted = await _personRepository.DeleteByIdAsync(person.Id, cancellationToken);
         return isDeleted;
     }
 }

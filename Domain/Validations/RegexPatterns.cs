@@ -7,11 +7,11 @@ public class RegexPatterns
     /// <summary>
     /// Паттерн номера телефона
     /// </summary>
-    public static readonly Regex Phone= new(@"\+373[4,9]\d{5}$");
+    public static readonly Regex Phone= new(@"^\+?\d{9,15}$");
     /// <summary>
     /// Паттерн ника в Telegram
     /// </summary>
-    public static readonly Regex TelegramName = new("^@[A-Za-z0-9_]$");
+    public static readonly Regex TelegramName = new("^@[A-Za-z0-9_]+$");
     /// <summary>
     /// Паттерн полного имени 
     /// </summary>

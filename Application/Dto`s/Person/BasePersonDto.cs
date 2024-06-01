@@ -31,6 +31,4 @@ public class BasePersonDto
     /// Ник tg
     /// </summary>
     public string Telegram { get; init; }
-
-    public List<CustomFields<string>> CustomFields { get; init; }
 }

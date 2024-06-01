@@ -9,5 +9,5 @@ public interface IPersonRepository : IBaseRepository<Person>
     /// </summary>
     /// <param name="id"></param>
     /// <returns>кастомное поле</returns>
-    public Task<List<CustomFields<string>>> GetCustomFieldAsync(Guid id);
+    public Task<List<CustomFields<string>>> GetCustomFieldAsync(Guid id, CancellationToken cancellationToken);
 }
