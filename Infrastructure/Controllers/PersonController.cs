@@ -17,8 +17,8 @@ public class PersonController : ControllerBase
         
     }
 
-    [HttpGet("get")]
-    public async Task<IActionResult> GetAsync(Guid id, [FromServices] PersonService service, CancellationToken cancellationToken)
+    [HttpGet("getById")]
+    public async Task<IActionResult> GetByIdAsync(Guid id, [FromServices] PersonService service, CancellationToken cancellationToken)
     {
         return Ok(await service.GetByIdAsync(id, cancellationToken));
     }
@@ -33,5 +33,11 @@ public class PersonController : ControllerBase
     public async Task<IActionResult> DeleteAsync([FromBody] DeletePersonRequest request, [FromServices] PersonService service, CancellationToken cancellationToken)
     {
         return Ok(await service.DeleteByIdAsync(request,cancellationToken));
+    }
+
+    [HttpGet("get")]
+    public async Task<IActionResult> GetAsync([FromServices] PersonService service, CancellationToken cancellationToken)
+    {
+        return Ok(await service.GetAll(cancellationToken));
     }
 }

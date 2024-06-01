@@ -45,6 +45,12 @@ public class PersonService
         return response;
     }
 
+    public async Task<List<GetPersonByIdResponse>> GetAll(CancellationToken cancellationToken)
+    {
+        var persons = await _personRepository.GetAllListAsync(cancellationToken);
+        return _mapper.Map<List<GetPersonByIdResponse>>(persons);
+    }
+
     /// <summary>
     /// Обновление Person
     /// </summary>
