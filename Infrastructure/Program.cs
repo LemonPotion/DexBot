@@ -22,9 +22,10 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.Configure<CronExpressionSettings>(builder.Configuration.GetSection(nameof(CronExpressionSettings)));
+        var cron = builder.Services.Configure<CronExpressionSettings>(builder.Configuration.GetSection(nameof(CronExpressionSettings)));
         builder.Services.Configure<TelegramSettings>(builder.Configuration.GetSection(nameof(TelegramSettings))); 
         builder.Services.Configure<QuartzOptions>(builder.Configuration.GetSection("Quartz"));
+        builder.Services.Configure<OpenAISettings>(builder.Configuration.GetSection(nameof(OpenAISettings)));
         
         builder.Services.AddQuartz(config =>
         {

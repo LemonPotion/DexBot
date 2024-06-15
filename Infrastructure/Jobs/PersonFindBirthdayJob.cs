@@ -25,14 +25,14 @@ public class PersonFindBirthdayJob : IJob
     public async Task Execute(IJobExecutionContext context)
     {
         var cancellationToken = context.CancellationToken;
-        await SendMessageAsync(DateTime.Now.ToString(), cancellationToken);
+        await SendMessageAsync(cancellationToken);
     }
     /// <summary>
     /// Send message to telegram with photo 
     /// </summary>
     /// <param name="message"></param>
     /// <param name="cancellationToken"></param>
-    private async Task SendMessageAsync(string message, CancellationToken cancellationToken)
+    private async Task SendMessageAsync(CancellationToken cancellationToken)
     {
         try
         {
@@ -40,11 +40,9 @@ public class PersonFindBirthdayJob : IJob
             foreach (var person in persons)
             {
                 await _telegramBotClient.SendPhotoAsync(chatId: _telegramSettings.ChatId,
-                    photo: InputFile.FromUri("https://preview.redd.it/binfjjnfxan61.jpg?width=640&crop=smart&auto=webp&s=38bd5f1af64330e227517d60dabb50bfe09550c4"), 
-                    caption: message, 
+                    photo: InputFile.FromUri(_telegramSettings.ImageUri), 
+                    caption: $"С днём рождения {person.FullName.FirstName}!", 
                     cancellationToken: cancellationToken);
-                
-                await _telegramBotClient.SendTextMessageAsync(_telegramSettings.ChatId, message, cancellationToken: cancellationToken);
             }
         }
         catch (Exception e)

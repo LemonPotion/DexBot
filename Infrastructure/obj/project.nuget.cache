@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "15tM3O630Qc1BSdzyIvQfav2XQM8TumTN0NoZ5zNgYsYCrnzPoOKYI+5O2sYJpdPC4DnNF0ZtDpTM8k9gLdGPA==",
+  "dgSpecHash": "lCSpBz93zXrMoaWOMKcNiReLNqz1x4GbnRrPHGo4WF74Jb+nNIfszEYki1pkQ+6sfraHZcwtk/vwLhPlS3QOWw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lemon\\OneDrive\\Рабочий стол\\DexBot\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\Lemon\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.4\\npgsql.entityframeworkcore.postgresql.8.0.4.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\openai\\2.0.0-beta.5\\openai.2.0.0-beta.5.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\quartz\\3.9.0\\quartz.3.9.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\quartz.extensions.dependencyinjection\\3.9.0\\quartz.extensions.dependencyinjection.3.9.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\quartz.extensions.hosting\\3.9.0\\quartz.extensions.hosting.3.9.0.nupkg.sha512",
@@ -46,6 +47,7 @@
     "C:\\Users\\Lemon\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.6.2\\swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\system.clientmodel\\1.1.0-beta.4\\system.clientmodel.1.1.0-beta.4.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.composition\\6.0.0\\system.composition.6.0.0.nupkg.sha512",
@@ -58,6 +60,7 @@
     "C:\\Users\\Lemon\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.reflection.metadata\\6.0.1\\system.reflection.metadata.6.0.1.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Lemon\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
