@@ -16,23 +16,27 @@ public class PersonMappingProfile : Profile
     {
          // Requests
          CreateMap<CreatePersonRequest, Person>()
-             .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()))
-             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => new FullName(src.FullName.FirstName, src.FullName.LastName, src.FullName.MiddleName)))
-             .ForMember(dest => dest.BirthDay, opt => opt.MapFrom(src => src.BirthDay))
-             .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender))
-             .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
-             .ForMember(dest => dest.Telegram, opt => opt.MapFrom(src => src.Telegram));
-
+             .ConstructUsing(dto => new Person(
+                 Guid.NewGuid(),
+                 new FullName(dto.FullName.FirstName, dto.FullName.LastName, dto.FullName.MiddleName),
+                 dto.Gender,
+                 dto.BirthDay,
+                 dto.PhoneNumber,
+                 dto.Telegram,
+                 null));
+         
             CreateMap<GetPersonByIdRequest, Person>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
 
             CreateMap<UpdatePersonRequest, Person>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName))
-                .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender))
-                .ForMember(dest => dest.BirthDay, opt => opt.MapFrom(src => src.BirthDay))
-                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
-                .ForMember(dest => dest.Telegram, opt => opt.MapFrom(src => src.Telegram));
+                .ConstructUsing(dto => new Person(
+                    dto.Id,
+                    new FullName(dto.FullName.FirstName, dto.FullName.LastName, dto.FullName.MiddleName),
+                    dto.Gender,
+                    dto.BirthDay,
+                    dto.PhoneNumber,
+                    dto.Telegram,
+                    null));
 
             CreateMap<DeletePersonRequest, Person>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
@@ -69,8 +73,8 @@ public class PersonMappingProfile : Profile
                 .ForMember(dest => dest.BirthDay, opt => opt.MapFrom(src => src.BirthDay))
                 .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
                 .ForMember(dest => dest.Telegram, opt => opt.MapFrom(src => src.Telegram));
-
-            // Additional Mapping
+            
+            //Additional
             CreateMap<FullName, FullNameDto>();
             
             CreateMap<FullNameDto, FullName>();

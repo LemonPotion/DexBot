@@ -1,7 +1,9 @@
 using FluentValidation;
 
 namespace Domain.Validations.Validators.Common;
-
+/// <summary>
+/// Класс валидации даты рождения
+/// </summary>
 public class BirthDateValidator: AbstractValidator<DateTime>
 {
     /// <summary>

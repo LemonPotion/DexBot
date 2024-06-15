@@ -8,10 +8,10 @@ using Domain.Entities;
 namespace Application.Services;
 public class PersonService
 {
-
+    
     private readonly IPersonRepository _personRepository;
     private readonly IMapper _mapper;
-
+    
     public PersonService(IMapper mapper, IPersonRepository personRepository)
     {
         _mapper = mapper;
@@ -44,7 +44,11 @@ public class PersonService
         var response = _mapper.Map<GetPersonByIdResponse>(person);
         return response;
     }
-
+    /// <summary>
+    /// Получить список всех Person
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<List<GetPersonByIdResponse>> GetAll(CancellationToken cancellationToken)
     {
         var persons = await _personRepository.GetAllListAsync(cancellationToken);

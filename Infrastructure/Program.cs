@@ -1,13 +1,13 @@
 using Application.Interfaces.Repositories;
 using Application.Services;
 using Infrastructure.Dal.EntityFramework;
-using Infrastructure.Dal.Jobs;
 using Infrastructure.Dal.Repositories;
+using Infrastructure.Jobs;
+using Infrastructure.Settings;
 using Microsoft.EntityFrameworkCore;
 using Quartz;
 
 namespace Infrastructure;
-
 public class Program
 {
     public static void Main(string[] args)
@@ -21,16 +21,22 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
         builder.Services.AddSwaggerGen();
-        
-        var cronExpressionSettings = builder.Configuration.GetSection("CronExpression").Get<CronExpressionSettings>();
+
+        builder.Services.Configure<CronExpressionSettings>(builder.Configuration.GetSection(nameof(CronExpressionSettings)));
+        builder.Services.Configure<TelegramSettings>(builder.Configuration.GetSection(nameof(TelegramSettings))); 
+        builder.Services.Configure<QuartzOptions>(builder.Configuration.GetSection("Quartz"));
         
         builder.Services.AddQuartz(config =>
         {
-            //TODO: найти альтернативы  
-            config.UseMicrosoftDependencyInjectionJobFactory();
+            var cronExpressionSettings =builder.Configuration.GetSection(nameof(CronExpressionSettings)).Get<CronExpressionSettings>();
+            config.UseSimpleTypeLoader();
+            config.UseInMemoryStore();
             
             var jobKey = new JobKey("personFindBirthdayJob");
-            config.AddJob<PersonFindBirthdayJob>(opts => opts.WithIdentity(jobKey));
+            
+            config.AddJob<PersonFindBirthdayJob>(opts => 
+                opts.WithIdentity(jobKey).WithDescription("Finds persons with today's birthdate"));
+            
             var triggerKey = new TriggerKey("personFindBirthdayJobTrigger");
             
             config.AddTrigger(opts=> opts.ForJob(jobKey).WithIdentity(triggerKey).WithCronSchedule(cronExpressionSettings.PersonFindBirthdayJob));

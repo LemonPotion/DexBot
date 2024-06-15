@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{990A5BA6-2227-4677-8181-076C50686561}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D78649FC-3BA1-4E1E-A5C0-D2F790D9BC69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postman", "postman", "{F76B135C-A7C1-4B33-A1BC-FF8E0118A564}"
+	ProjectSection(SolutionItems) = preProject
+		..\Crud collection.postman_collection.json = ..\Crud collection.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,5 +40,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {447281C7-4F64-4995-8907-95DD0C4A9C9D}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9D8D6C4-FE44-426E-B4E3-872A561E7052} = {D78649FC-3BA1-4E1E-A5C0-D2F790D9BC69}
+		{67264624-17FB-49CE-9855-7C70AB29FC74} = {D78649FC-3BA1-4E1E-A5C0-D2F790D9BC69}
+		{990A5BA6-2227-4677-8181-076C50686561} = {D78649FC-3BA1-4E1E-A5C0-D2F790D9BC69}
 	EndGlobalSection
 EndGlobal

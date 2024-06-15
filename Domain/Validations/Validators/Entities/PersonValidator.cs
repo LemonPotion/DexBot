@@ -1,9 +1,12 @@
 using Domain.Entities;
+using Domain.Validations.Primitives;
 using Domain.Validations.Validators.Common;
 using FluentValidation;
 
 namespace Domain.Validations.Validators.Entities;
-
+/// <summary>
+/// Класс валидации сущности Person
+/// </summary>
 public class PersonValidator : AbstractValidator<Person>
 {
     public PersonValidator(string paramName)

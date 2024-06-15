@@ -1,7 +1,9 @@
 using System.Text.RegularExpressions;
 
 namespace Domain.Validations;
-
+/// <summary>
+/// Класс хранящи Regex паттерны 
+/// </summary>
 public class RegexPatterns
 {
     /// <summary>

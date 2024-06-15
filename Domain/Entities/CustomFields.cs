@@ -16,5 +16,8 @@ public class CustomFields<TType> : BaseEntity
     /// </summary>
     public TType Value { get; set; }
     
+    /// <summary>
+    /// Id 
+    /// </summary>
     public Guid PersonId { get; set; }
 }

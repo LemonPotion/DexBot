@@ -123,3 +123,5 @@ C:\Users\Lemon\OneDrive\Рабочий стол\DexBot\Infrastructure\obj\Debug\
 C:\Users\Lemon\OneDrive\Рабочий стол\DexBot\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
 C:\Users\Lemon\OneDrive\Рабочий стол\DexBot\Infrastructure\bin\Debug\net8.0\Application.dll
 C:\Users\Lemon\OneDrive\Рабочий стол\DexBot\Infrastructure\bin\Debug\net8.0\Application.pdb
+C:\Users\Lemon\OneDrive\Рабочий стол\DexBot\Infrastructure\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Lemon\OneDrive\Рабочий стол\DexBot\Infrastructure\bin\Debug\net8.0\Telegram.Bot.dll

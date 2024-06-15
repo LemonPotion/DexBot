@@ -40,4 +40,8 @@ public abstract class ExceptionMessages
     /// Сообщение о ошибке перечисления
     /// </summary>
     public const string DefaultEnum = "Enum {0} can't be default";
+    /// <summary>
+    /// Сообщение о ошибке значения перечисления
+    /// </summary>
+    public const string InvalidEnumValue = "{0} Invalid enum value";
 }

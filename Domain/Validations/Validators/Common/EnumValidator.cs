@@ -1,7 +1,10 @@
 using FluentValidation;
 
 namespace Domain.Validations.Validators.Common;
-
+/// <summary>
+/// Класс валидации перечислений
+/// </summary>
+/// <typeparam name="TEnum"></typeparam>
 public class EnumValidator<TEnum> : AbstractValidator<TEnum> where TEnum : Enum
 {
     /// <summary>
@@ -11,10 +14,12 @@ public class EnumValidator<TEnum> : AbstractValidator<TEnum> where TEnum : Enum
     /// <param name="defaultValues"></param>
     public EnumValidator(string paramName, params TEnum[] defaultValues)
     {
-        foreach (var value in defaultValues)
-        {
-            RuleFor(param => param)
-                .NotEqual(value).WithMessage(string.Format(ExceptionMessages.DefaultEnum, paramName));
-        }
+        RuleFor(param => param)
+            .Must(BeAValidEnumValue<TEnum>)
+            .WithMessage(string.Format(ExceptionMessages.InvalidEnumValue, paramName));
+    }
+    private static bool BeAValidEnumValue<TEnum>(TEnum value) where TEnum : Enum
+    {
+        return Enum.IsDefined(typeof(TEnum), value);
     }
 }

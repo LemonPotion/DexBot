@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Dal.EntityFramework.Configurations;
-
+/// <summary>
+/// Конфигурация EF для CustomFields
+/// </summary>
 public class CustomFieldsConfiguration : IEntityTypeConfiguration<CustomFields<string>>
 {
     public void Configure(EntityTypeBuilder<CustomFields<string>> builder)

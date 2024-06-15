@@ -1,6 +1,9 @@
 ﻿using System.Text.Json;
 namespace Domain.ValueObjects
 {
+    /// <summary>
+    /// Базовый класс для value object
+    /// </summary>
     public abstract class BaseValueObject
     {
         public override bool Equals(object? obj)

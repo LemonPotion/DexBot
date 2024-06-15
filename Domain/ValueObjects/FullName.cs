@@ -4,7 +4,7 @@ using Domain.Validations.Validators.Common;
 namespace Domain.ValueObjects
 {
     /// <summary>
-    /// Полное имя
+    /// Класс хранящий полное имя
     /// </summary>
     public class FullName : BaseValueObject
     {

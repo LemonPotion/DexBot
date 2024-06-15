@@ -3,21 +3,27 @@ using Infrastructure.Dal.EntityFramework.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.EntityFramework;
+/// <summary>
+/// Database Context
+/// </summary>
 public class DexBotDbContext : DbContext
 {
+    /// <summary>
+    /// Persons DbSet
+    /// </summary>
     public DbSet<Person> Persons { get; set; }
-    
+    /// <summary>
+    /// CustomFields DbSet
+    /// </summary>
     public DbSet<CustomFields<string>> CustomFields { get; set; }
 
     public DexBotDbContext(DbContextOptions<DexBotDbContext> options) : base(options)
     {
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-
-        optionsBuilder.UseNpgsql("User ID=postgres;Password= mysecretpassword;Host=localhost;Port=5432;Database=postgres;");
-    }
+    /// <summary>
+    /// Применение конфигураций для таблиц
+    /// </summary>
+    /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
