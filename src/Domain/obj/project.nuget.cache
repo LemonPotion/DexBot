@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "cxfWdznjy0RiCW9o1wghx99gka8Rz/59r6U97c5GT68SrYNg2qGXdbKvuPQDYGXmlRx43Zs32HX81VSY15+xgQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Lemon\\OneDrive\\Рабочий стол\\DexBot\\src\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lemon\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\Lemon\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
