@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices.JavaScript;
+using Application.Services;
 using Domain.Entities;
 
 namespace Application.Interfaces.Repositories;
@@ -19,4 +20,6 @@ public interface IPersonRepository : IBaseRepository<Person>
     /// <param name="cancellationToken"></param>
     /// <returns>List Person </returns>
     public Task<List<Person>> GetBirthdayPersonsAsync(DateTime dateTime, CancellationToken cancellationToken);
+
+    public Task<Person> GetNextBirthdayPerson(CancellationToken cancellationToken);
 }

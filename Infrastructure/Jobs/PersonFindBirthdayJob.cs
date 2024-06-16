@@ -39,11 +39,18 @@ public class PersonFindBirthdayJob : IJob
             var persons = await _personRepository.GetBirthdayPersonsAsync(DateTime.Now, cancellationToken);
             foreach (var person in persons)
             {
-                await _telegramBotClient.SendPhotoAsync(chatId: _telegramSettings.ChatId,
+                await _telegramBotClient.SendPhotoAsync(chatId: _telegramSettings.GroupId,
                     photo: InputFile.FromUri(_telegramSettings.ImageUri), 
                     caption: $"С днём рождения {person.FullName.FirstName}!", 
                     cancellationToken: cancellationToken);
             }
+
+            var nextBirthdayPerson = await _personRepository.GetNextBirthdayPerson(cancellationToken);
+            await _telegramBotClient.SendTextMessageAsync(
+                chatId:_telegramSettings.ChatId,
+                text:$"Ближайшее день рождения у {nextBirthdayPerson.FullName.FirstName} {nextBirthdayPerson.FullName.LastName}, Номер телефона: {nextBirthdayPerson.PhoneNumber}, Возраст: {nextBirthdayPerson.Age}, Телеграм: {nextBirthdayPerson.Telegram}",
+                cancellationToken: cancellationToken);
+
         }
         catch (Exception e)
         {

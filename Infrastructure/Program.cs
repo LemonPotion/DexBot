@@ -33,14 +33,16 @@ public class Program
             config.UseSimpleTypeLoader();
             config.UseInMemoryStore();
             
-            var jobKey = new JobKey("personFindBirthdayJob");
+            var birthdayJobKey = new JobKey("personFindBirthdayJob");
             
-            config.AddJob<PersonFindBirthdayJob>(opts => 
-                opts.WithIdentity(jobKey).WithDescription("Finds persons with today's birthdate"));
+            config.AddJob<PersonFindBirthdayJob>(opts => opts.WithIdentity(birthdayJobKey)
+                    .WithDescription("Finds persons with today's birthdate"));
             
-            var triggerKey = new TriggerKey("personFindBirthdayJobTrigger");
+            var birthdayTriggerKey = new TriggerKey("personFindBirthdayJobTrigger");
             
-            config.AddTrigger(opts=> opts.ForJob(jobKey).WithIdentity(triggerKey).WithCronSchedule(cronExpressionSettings.PersonFindBirthdayJob));
+            config.AddTrigger(opts=> opts.ForJob(birthdayJobKey)
+                .WithIdentity(birthdayTriggerKey)
+                .WithCronSchedule(cronExpressionSettings.PersonFindBirthdayJob));
         });
 
         builder.Services.AddQuartzHostedService(opts =>

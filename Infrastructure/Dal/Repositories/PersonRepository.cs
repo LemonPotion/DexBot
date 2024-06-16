@@ -96,6 +96,19 @@ public class PersonRepository : IPersonRepository
     {
         var persons =
             _dbContext.Persons.Where(x => x.BirthDay.Day == dateTime.Day && x.BirthDay.Month == dateTime.Month);
-        return await persons.ToListAsync();
+        return await persons.ToListAsync(cancellationToken);
+    }
+
+    public async Task<Person> GetNextBirthdayPerson(CancellationToken cancellationToken)
+    {
+        var currentDate = DateTime.UtcNow.Date;
+        var person = await _dbContext.Persons
+            .OrderBy(p => p.BirthDay.Month < currentDate.Month || (p.BirthDay.Month == currentDate.Month && p.BirthDay.Day >= currentDate.Day) ?
+                p.BirthDay.Month - currentDate.Month :
+                12 - (currentDate.Month - p.BirthDay.Month))
+            .ThenBy(p => p.BirthDay.Day < currentDate.Day ? p.BirthDay.Day + DateTime.DaysInMonth(currentDate.Year, currentDate.Month) - currentDate.Day : p.BirthDay.Day - currentDate.Day)
+            .FirstOrDefaultAsync(cancellationToken);
+        
+        return person;
     }
 }
