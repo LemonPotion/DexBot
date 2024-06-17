@@ -11,7 +11,20 @@
 			"name": "Get",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7260/api/Person/getAll",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"api",
+						"Person",
+						"getAll"
+					]
+				}
 			},
 			"response": []
 		},
@@ -21,7 +34,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:7260/api/Person/getById?id=9a4416da-d95f-4043-bda0-b654b0248f65",
+					"raw": "https://localhost:7260/api/Person/a443ecc1-2f16-4be5-8bc6-465ca3eb9ad4",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -30,13 +43,7 @@
 					"path": [
 						"api",
 						"Person",
-						"getById"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "9a4416da-d95f-4043-bda0-b654b0248f65"
-						}
+						"a443ecc1-2f16-4be5-8bc6-465ca3eb9ad4"
 					]
 				}
 			},
@@ -58,7 +65,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"fullName\": {\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"middleName\": null\r\n  },\r\n  \"birthDay\": \"2012-06-15T14:07:50.306Z\",\r\n  \"gender\": 1,\r\n  \"phoneNumber\": \"+37377587321\",\r\n  \"telegram\": \"@JohnDoe\"\r\n}",
+					"raw": "{\r\n  \"fullName\": {\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"middleName\": null\r\n  },\r\n  \"birthDay\": \"2012-06-16T14:07:50.306Z\",\r\n  \"gender\": 1,\r\n  \"phoneNumber\": \"+37377587321\",\r\n  \"telegram\": \"@JohnDoe\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -66,7 +73,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7260/api/Person/create",
+					"raw": "https://localhost:7260/api/Person",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -74,8 +81,7 @@
 					"port": "7260",
 					"path": [
 						"api",
-						"Person",
-						"create"
+						"Person"
 					]
 				}
 			},
@@ -97,7 +103,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"id\": \"9a4416da-d95f-4043-bda0-b654b0248f65\"\r\n}",
+					"raw": "{\r\n  \"id\": \"a7252078-2482-418d-bcfb-7b040f8b9ecc\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,7 +111,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7260/api/Person/delete",
+					"raw": "https://localhost:7260/api/Person",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -113,8 +119,7 @@
 					"port": "7260",
 					"path": [
 						"api",
-						"Person",
-						"delete"
+						"Person"
 					]
 				}
 			},
@@ -136,7 +141,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"fullName\": {\r\n    \"firstName\": \"Margaret\",\r\n    \"lastName\": \"Strings\",\r\n    \"middleName\": \"Alban\"\r\n  },\r\n  \"birthDay\": \"2024-06-15T14:22:41.057Z\",\r\n  \"gender\": 0,\r\n  \"phoneNumber\": \"+37377591213\",\r\n  \"telegram\": \"@Margaret\",\r\n  \"id\": \"9a4416da-d95f-4043-bda0-b654b0248f65\"\r\n}",
+					"raw": "{\r\n  \"fullName\": {\r\n    \"firstName\": \"Margaret\",\r\n    \"lastName\": \"Strings\",\r\n    \"middleName\": \"Alban\"\r\n  },\r\n  \"birthDay\": \"2024-06-15T14:22:41.057Z\",\r\n  \"gender\": 0,\r\n  \"phoneNumber\": \"+37377591213\",\r\n  \"telegram\": \"@Margaret\",\r\n  \"id\": \"a7252078-2482-418d-bcfb-7b040f8b9ecf\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -144,7 +149,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:7260/api/Person/update",
+					"raw": "https://localhost:7260/api/Person",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -152,8 +157,7 @@
 					"port": "7260",
 					"path": [
 						"api",
-						"Person",
-						"update"
+						"Person"
 					]
 				}
 			},
